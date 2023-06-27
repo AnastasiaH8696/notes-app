@@ -10,8 +10,12 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const forceUpdate = useForceUpdate();
 
+  const backendIP = process.env.BACKEND_IP;
+  const backendPort = process.env.BACKEND_PORT;
+  const backendURL = `http://${backendIP}:${backendPort}/v1/notes/`;
+
   const fetchNotes = async () => {
-    const response = await fetch("http://localhost:8080/v1/notes/");
+    const response = await fetch(backendURL);
     const data = await response.json();
     if (!response.ok) {
       throw Error(data.detail);
@@ -20,7 +24,7 @@ const App = () => {
   };
 
   const sendNote = async (newNote) => {
-    const response = await fetch("http://localhost:8080/v1/notes/", {
+    const response = await fetch(backendURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +39,7 @@ const App = () => {
   };
 
   const removeNote = async (id) => {
-    const response = await fetch(`http://localhost:8080/v1/notes/${id}`, {
+    const response = await fetch(backendURL + id, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -45,7 +49,7 @@ const App = () => {
   };
 
   const sendUpdate = async (id, update) => {
-    const response = await fetch(`http://localhost:8080/v1/notes/${id}`, {
+    const response = await fetch(backendURL + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
