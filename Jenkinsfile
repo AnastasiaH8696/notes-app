@@ -14,35 +14,6 @@ pipeline {
       }
     }
 
-    stage('Build image') {
-      steps {
-        script {
-          withEnv(['DOCKERIMAGEFRONTEND=${dockerimagefrontend}',
-                   'DOCKERIMAGEBACKEND=${dockerimagebackend}',
-                   'DOCKERIMAGEDB=${dockerimagedb}']) {
-            dockerImageFrontend = docker.build env.DOCKERIMAGEFRONTEND
-            dockerImageBackend = docker.build env.DOCKERIMAGEBACKEND
-            dockerImageDB = docker.build env.DOCKERIMAGEDB
-          }
-        }
-      }
-    }
-
-    stage('Pushing Image') {
-      environment {
-        registryCredential = 'dockerhub-credentials'
-      }
-      steps {
-        script {
-          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-            dockerImageFrontend.push("latest")
-            dockerImageBackend.push("latest")
-            dockerImageDB.push("latest")
-          }
-        }
-      }
-    }
-
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
