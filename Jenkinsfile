@@ -17,12 +17,12 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          withEnv(['DOCKER_IMAGE_FRONTEND=${dockerimagefrontend}',
-                   'DOCKER_IMAGE_BACKEND=${dockerimagebackend}',
-                   'DOCKER_IMAGE_DB=${dockerimagedb}']) {
-            dockerImageFrontend = docker.build env.DOCKER_IMAGE_FRONTEND
-            dockerImageBackend = docker.build env.DOCKER_IMAGE_BACKEND
-            dockerImageDB = docker.build env.DOCKER_IMAGE_DB
+          withEnv(['DOCKERIMAGEFRONTEND=${dockerimagefrontend}',
+                   'DOCKERIMAGEBACKEND=${dockerimagebackend}',
+                   'DOCKERIMAGEDB=${dockerimagedb}']) {
+            dockerImageFrontend = docker.build env.DOCKERIMAGEFRONTEND
+            dockerImageBackend = docker.build env.DOCKERIMAGEBACKEND
+            dockerImageDB = docker.build env.DOCKERIMAGEDB
           }
         }
       }
