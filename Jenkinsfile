@@ -38,18 +38,18 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-            dockerImageFrontend.push("latest")
-            dockerImageBackend.push("latest")
-            dockerImageDB.push("latest")
+            dockerImageFrontend.push('latest')
+            dockerImageBackend.push('latest')
+            dockerImageDB.push('latest')
           }
         }
       }
     }
 
-    stage('Deploying React.js container to Kubernetes') {
+    stage('Deploying notes-app container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+          kubernetesDeploy(configs: 'deployment.yaml', 'service.yaml')
         }
       }
     }
