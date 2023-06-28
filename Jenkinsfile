@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'docker-agent-alpine-00002sr9frlza'
-  }
+  agent any
 
   environment {
     dockerimagefrontend = "anastasiah8696/notes-app-ui"
