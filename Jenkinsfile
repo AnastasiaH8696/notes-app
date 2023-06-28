@@ -9,7 +9,9 @@ pipeline {
     dockerImageDB = ""
   }
 
-  agent docker
+  agent {
+    label 'docker-agent-alpine-00002sr9frlza'
+  }
 
   stages {
 
