@@ -2,11 +2,9 @@ pipeline {
   agent any
 
   environment {
-    dockerimagefrontend = 'anastasiah8696/notes-app-ui'
+    dockerimage = 'anastasiah8696/notes-app-ui'
     dockerImageFrontend = ''
-    dockerimagebackend = 'anastasiah8696/notes-app-backend'
     dockerImageBackend = ''
-    dockerimagedb = 'mongo'
     dockerImageDB = ''
   }
 
@@ -20,9 +18,11 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-            dockerImageFrontend = docker.build dockerimagefrontend
-            dockerImageBackend = docker.build dockerimagebackend
-            dockerImageDB = docker.build dockerimagedb
+            dockerImageFrontend = docker.build dockerimage
+            dockerimage = 'anastasiah8696/notes-app-backend'
+            dockerImageBackend = docker.build dockerimage
+            dockerimage = 'mongo'
+            dockerImageDB = docker.build dockerimage
         }
       }
     }
