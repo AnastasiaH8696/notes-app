@@ -2,12 +2,12 @@ pipeline {
   agent any
 
   environment {
-    dockerimagefrontend = "anastasiah8696/notes-app-ui"
-    dockerImageFrontend = ""
-    dockerimagebackend = "anastasiah8696/notes-app-backend"
-    dockerImageBackend = ""
-    dockerimagedb = "mongo"
-    dockerImageDB = ""
+    dockerimagefrontend = 'anastasiah8696/notes-app-ui'
+    dockerImageFrontend = ''
+    dockerimagebackend = 'anastasiah8696/notes-app-backend'
+    dockerImageBackend = ''
+    dockerimagedb = 'mongo'
+    dockerImageDB = ''
   }
 
   stages {
