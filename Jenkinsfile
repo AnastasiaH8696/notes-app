@@ -20,11 +20,13 @@ pipeline {
     stage('Install Docker') {
       steps {
         script {
+          sh '''
           apk update
           apk add docker
           rc-update add docker boot
           /etc/init.d/docker start
           addgroup anastasiah8696 docker
+          '''
         }
       }
     }
