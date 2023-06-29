@@ -1,11 +1,6 @@
 pipeline {
-  agent {
-    docker {
-      image 'jenkins/agent:latest-alpine'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
-    }
-  }
-
+  agent any
+  
   environment {
     dockerimage = 'anastasiah8696/notes-app-ui'
     dockerImageFrontend = ''
@@ -17,18 +12,6 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git 'https://github.com/AnastasiaH8696/notes-app.git'
-      }
-    }
-
-    stage('Install Docker') {
-      steps {
-        sh '''
-        apk update
-        apk add docker
-        rc-update add docker boot
-        /etc/init.d/docker start
-        addgroup anastasiah8696 docker
-        '''
       }
     }
 
