@@ -16,9 +16,9 @@ spec:
         - name: notes-app-frontend
           image: anastasiah8696/notes-app-ui:latest
           ports:
-	    - containerPort: 3000
+            - containerPort: 3000
           imagePullPolicy: Never
-	  restartPolicy: Always
+          restartPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
