@@ -15,7 +15,7 @@ pipeline {
       }
     }
 
-   /* stage('Build image') {
+    stage('Build image') {
       steps {
         script {
             dockerImageFrontend = docker.build dockerimage
@@ -40,7 +40,7 @@ pipeline {
           }
         }
       }
-    } */
+    } 
 
     stage('Deploying notes-app container to Kubernetes') {
       steps {
