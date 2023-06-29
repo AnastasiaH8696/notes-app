@@ -1,6 +1,10 @@
 pipeline {
   agent {
     label 'docker-agent-alpine'
+    docker {
+      image 'jenkins/agent:latest-alpine'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
   }
 
   environment {
@@ -19,15 +23,13 @@ pipeline {
 
     stage('Install Docker') {
       steps {
-        script {
-          sh '''
-          apk update
-          apk add docker
-          rc-update add docker boot
-          /etc/init.d/docker start
-          addgroup anastasiah8696 docker
-          '''
-        }
+        sh '''
+        apk update
+        apk add docker
+        rc-update add docker boot
+        /etc/init.d/docker start
+        addgroup anastasiah8696 docker
+        '''
       }
     }
 
